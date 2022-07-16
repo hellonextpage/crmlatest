@@ -50,6 +50,7 @@ use App\Repositories\ProjectRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\TimerRepository;
 use App\Repositories\UserRepository;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -110,7 +111,7 @@ class Projects extends Controller {
         EventTrackingRepository $trackingrepo,
         EmailerRepository $emailerrepo,
         FileRepository $filerepo,
-        CustomFieldsRepository $customrepo) {
+        CustomFieldsRepository $customrepo,Branch $branch) {
 
         //parent
         parent::__construct();
@@ -125,6 +126,7 @@ class Projects extends Controller {
         $this->trackingrepo = $trackingrepo;
         $this->emailerrepo = $emailerrepo;
         $this->customrepo = $customrepo;
+        $this->branch = $branch;
 
         //authenticated
         $this->middleware('auth');
@@ -249,6 +251,8 @@ class Projects extends Controller {
         //get tags
         $tags = $this->tagrepo->getByType('project');
 
+        //get all branches
+        $branch = $this->branch->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('create'),
@@ -257,6 +261,7 @@ class Projects extends Controller {
             'categories' => $categories,
             'tags' => $tags,
             'fields' => $this->getCustomFields(),
+            'branch'=>$branch
         ];
 
         //show the form
@@ -626,6 +631,8 @@ class Projects extends Controller {
         $tags = $tags_resource->merge($tags_user);
         $tags = $tags->unique('tag_title');
 
+        // get all branches
+        $branch = $this->branch->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('edit'),
@@ -633,6 +640,7 @@ class Projects extends Controller {
             'categories' => $categories,
             'tags' => $tags,
             'fields' => $this->getCustomFields($project),
+            'branch'=>$branch
         ];
 
         //response

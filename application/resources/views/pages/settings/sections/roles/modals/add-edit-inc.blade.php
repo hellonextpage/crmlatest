@@ -10,6 +10,19 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label
+                class="col-12 text-left control-label col-form-label required">Is Active</label>
+            <div class="col-12">
+                <select class="form-control form-control-sm"  id="is_active" name="is_active">
+                    <option value="">Select Status</option>
+                    <option value="1" @if(isset($role->is_active) && $role->is_active==1) selected @endif>Active</option>
+                    <option value="0" @if(isset($role->is_active) && $role->is_active==0) selected @endif>In Active</option>
+                </select>
+                
+            </div>
+        </div>
+
         <div class="table-responsive">
             <table class="table table-bordered w-99">
                 <thead>

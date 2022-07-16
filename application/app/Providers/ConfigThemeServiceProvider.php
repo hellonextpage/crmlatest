@@ -45,8 +45,9 @@ class ConfigThemeServiceProvider extends ServiceProvider {
         $directories = Storage::disk('root')->directories('public/themes');
 
         //clean up directory names
-        array_walk($directories, function (&$value, &$key) {
-            $value = str_replace('public/themes/', '', $value);
+        // Before it was &$key in the function
+        array_walk($directories, function (&$value, $key) {
+            $value = 'default';//str_replace('public/themes/', '', $value);
         });
 
         //check if default theme exists

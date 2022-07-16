@@ -15,10 +15,18 @@
         {{ $role->role_type }}
     </td>
     <td class="roles_col_status">
+        <!--
         @if($role->role_system == 'yes')
         <span class="label label-outline-default">{{ cleanLang(__('lang.default')) }}</span>
         @else
         ---
+        @endif
+        -->
+        <!-- Changing Status Columns -->
+        @if($role->is_active == 1)
+            <span class="label label-outline-default">Active</span>
+        @else
+            Inactive                    
         @endif
     </td>
     <td class="roles_col_action actions_column">

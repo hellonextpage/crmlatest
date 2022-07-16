@@ -56,6 +56,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Validator;
+use App\Models\Sale;
 
 class Invoices extends Controller {
 
@@ -259,12 +260,14 @@ class Invoices extends Controller {
 
         //get tags
         $tags = $this->tagrepo->getByType('invoice');
-
+		$this->sales = new Sale();
+		$sales = $this->sales->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('create'),
             'categories' => $categories,
             'tags' => $tags,
+			'sales'=>$sales
         ];
 
         //show the form
@@ -568,13 +571,15 @@ class Invoices extends Controller {
         if (!$invoice = $invoice->first()) {
             abort(409, __('lang.error_loading_item'));
         }
-
+		$this->sales = new Sale();
+		$sales = $this->sales->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('edit'),
             'invoice' => $invoice,
             'categories' => $categories,
             'tags' => $tags,
+			'sales'=>$sales
         ];
 
         //response

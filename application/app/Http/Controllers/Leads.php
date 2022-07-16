@@ -65,6 +65,7 @@ use Illuminate\Support\Str;
 use Image;
 use Intervention\Image\Exception\NotReadableException;
 use Validator;
+use App\Models\Branch;
 
 class Leads extends Controller {
 
@@ -152,12 +153,14 @@ class Leads extends Controller {
         EventTrackingRepository $trackingrepo,
         EmailerRepository $emailerrepo,
         Lead $leadmodel,
+        Branch $branch,
         CustomFieldsRepository $customrepo) {
 
         //parent
         parent::__construct();
 
         //vars
+        $this->branch = $branch;
         $this->leadrepo = $leadrepo;
         $this->tagrepo = $tagrepo;
         $this->userrepo = $userrepo;
@@ -328,6 +331,7 @@ class Leads extends Controller {
         //all available lead statuses
         $statuses = \App\Models\LeadStatus::all();
 
+        $branch = $this->branch->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('leads'),
@@ -335,6 +339,7 @@ class Leads extends Controller {
             'stats' => $this->statsWidget(),
             'categories' => $categories,
             'tags' => $tags,
+            'branch'=>$branch,
             'statuses' => $statuses,
         ];
 
@@ -363,13 +368,14 @@ class Leads extends Controller {
 
         //get all tags (type: lead) - for filter panel
         $tags = $this->tagrepo->getByType('lead');
-
+        $branch = $this->branch->All();
         //reponse payload
         $payload = [
             'page' => $page,
             'boards' => $boards,
             'categories' => $categories,
             'stats' => $this->statsWidget(),
+            'branch'=>$branch,
             'statuses' => \App\Models\LeadStatus::all(),
             'tags' => $tags,
         ];
@@ -462,7 +468,7 @@ class Leads extends Controller {
             'sort_by' => 'customfields_position',
         ]);
         $fields = $this->getCustomFields();
-
+        $branch = $this->branch->All();
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('create'),
@@ -470,6 +476,7 @@ class Leads extends Controller {
             'tags' => $tags,
             'statuses' => $statuses,
             'sources' => $sources,
+            'branch'=>$branch,
             'stats' => $this->statsWidget(),
             'fields' => $fields,
         ];

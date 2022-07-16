@@ -160,6 +160,34 @@
                 </select>
             </div>
         </div>
+		
+		<div class="form-group row">
+				<label
+					class="col-sm-12 col-lg-3 text-left control-label col-form-label required">{{ cleanLang(__('lang.sale')) }}*</label>
+				<div class="col-sm-12 col-lg-9">
+					
+					<select class="form-control form-control-sm"  id="sale_id" name="sale_id">
+						<option value="">Select Sale</option>
+						@foreach($sales as $sale)
+						<option value="{{$sale->sale_id}}" @if(isset($invoice) && $invoice->sale_id==$sale->sale_id) selected @endif >{{$sale->sale_id}}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+			
+			<!--[edit] city-->
+			<div class="form-group row">
+				<label
+					class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.is_active')) }}</label>
+				<div class="col-sm-12 col-lg-9">
+					<select class="form-control form-control-sm"  id="is_active" name="is_active">
+						<option value="">Select Status</option>
+						<option value="1" @if(isset($invoice) && $invoice->is_active==1) selected @endif>Active</option>
+						<option value="0" @if(isset($invoice) && $invoice->is_active==0) selected @endif>Inactive</option>
+					</select>
+				</div>
+			</div>
+			<!--/#[edit] city-->
 
         <div class="line"></div>
 
@@ -228,6 +256,7 @@
                 </textarea>
                 </div>
             </div>
+			
         </div>
         <!--/#options toggle-->
 

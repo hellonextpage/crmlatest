@@ -153,6 +153,198 @@
         </div>
         <!--/#DUE DATE-->
 
+        <!--[edit] branch-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.branch')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <select class="select2-basic form-control form-control-sm" id="branch_id" name="branch_id">
+                    <option></option>
+                    @foreach ($branch as $br)
+                    <option value="{{ $br->branch_id }}" @if(isset($project->branch_id) && ($project->branch_id == $br->branch_id)) selected @endif>
+                        {{$br->branch_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <!--/#[edit] branch-->
+
+        <!--[edit] address-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.address')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="address" name="address"
+                    value="{{ $project->address ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] address-->
+
+        <!--[edit] city-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.city')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="city_id" name="city_id"
+                    value="{{ $project->city_id ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] city-->
+
+
+
+
+
+        <!--[edit] area-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.area')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="area" name="area"
+                    value="{{ $project->area ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] area-->
+        <!--[edit] pincode-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.pincode')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="pincode" name="pincode"
+                    value="{{ $project->pincode ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] pincode-->
+        <!--[edit] map_location-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.map')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="map_location" name="map_location"
+                    value="{{ $project->map_location ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] map_location-->
+        <!--[edit] net_layout_area-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.net')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="net_layout_area" name="net_layout_area"
+                    value="{{ $project->net_layout_area ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] net_layout_area-->
+        <!--[edit] plot_area-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.plot')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="plot_area" name="plot_area"
+                    value="{{ $project->plot_area ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] plot_area-->
+
+        <!--[edit] site_rsrvd_for_public-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.site_rsrvd_for_public')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="site_rsrvd_for_public" name="site_rsrvd_for_public"
+                    value="{{ $project->site_rsrvd_for_public ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] site_rsrvd_for_public-->
+
+        <!--[edit] roads_area-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.roads_area')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="roads_area" name="roads_area"
+                    value="{{ $project->roads_area ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] roads_area-->
+
+        <!--[edit] approval_no-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.approval_no')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="approval_no" name="approval_no"
+                    value="{{ $project->approval_no ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] approval_no-->
+
+        <!--[edit] ref_lr_no-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.ref_lr_no')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="ref_lr_no" name="ref_lr_no"
+                    value="{{ $project->ref_lr_no ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] ref_lr_no-->
+
+        <!--[edit] apporval_dt-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.apporval_dt')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="apporval_dt" name="apporval_dt"
+                    value="{{ $project->apporval_dt ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] apporval_dt-->
+
+        <!--[edit] authority_blongs_to-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.authority_blongs_to')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="authority_blongs_to" name="authority_blongs_to"
+                    value="{{ $project->authority_blongs_to ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] authority_blongs_to-->
+
+        <!--[edit] permission_no-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.permission_no')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="permission_no" name="permission_no"
+                    value="{{ $project->permission_no ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] permission_no-->
+
+        <!--[edit] measurements-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.measurements')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="measurements" name="measurements"
+                    value="{{ $project->measurements ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] measurements-->
+
+        <!--[edit] partnered_banks-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.partnered_banks')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="partnered_banks" name="partnered_banks"
+                    value="{{ $project->partnered_banks ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] partnered_banks-->
+
         <!--CUSTOMER FIELDS [expanded] (july 2021 - the div container is necessary for project templates)-->
         @if(config('system.settings_customfields_display_projects') == 'expanded')
         <div id="project-custom-fields-container">

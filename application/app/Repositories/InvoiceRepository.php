@@ -348,7 +348,9 @@ class InvoiceRepository {
         $invoice->bill_due_date = request('bill_due_date');
         $invoice->bill_terms = request('bill_terms');
         $invoice->bill_notes = request('bill_notes');
-
+		$invoice->sale_id = request('sale_id');
+		$invoice->is_active = request('is_active');
+		$invoice->modified_by = Auth()->user()->id;
         //save and return id
         if ($invoice->save()) {
             return $invoice->bill_invoiceid;
@@ -376,6 +378,9 @@ class InvoiceRepository {
         $invoice->bill_due_date = request('bill_due_date');
         $invoice->bill_notes = request('bill_notes');
         $invoice->bill_terms = request('bill_terms');
+		$invoice->sale_id = request('sale_id');
+		$invoice->is_active = request('is_active');
+		$invoice->modified_by = Auth()->user()->id;
 
         //save
         if ($invoice->save()) {
@@ -468,6 +473,9 @@ class InvoiceRepository {
         $invoice->bill_discount_amount = request('bill_discount_amount');
         $invoice->bill_adjustment_description = request('bill_adjustment_description');
         $invoice->bill_adjustment_amount = request('bill_adjustment_amount');
+		$invoice->sale_id = request('sale_id');
+		$invoice->is_active = request('is_active');
+		$invoice->modified_by = Auth()->user()->id;
 
         //save
         $invoice->save();

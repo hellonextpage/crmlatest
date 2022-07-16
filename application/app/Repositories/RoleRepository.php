@@ -84,6 +84,9 @@ class RoleRepository {
 
         //data - for security,we will do some extra validations for each entry
         $role->role_name = ucwords(request('role_name'));
+        $role->is_active = request('is_active');
+        $role->created_by = auth()->id();
+        $role->modified_by = auth()->id();
         $role->role_clients = (in_array(request('role_clients'), $valid)) ? request('role_clients') : 0;
         $role->role_contacts = (in_array(request('role_contacts'), $valid)) ? request('role_contacts') : 0;
         $role->role_invoices = (in_array(request('role_invoices'), $valid)) ? request('role_invoices') : 0;
@@ -139,6 +142,8 @@ class RoleRepository {
 
         //data - for security,we will do some extra validations for each entry
         $role->role_name = ucwords(request('role_name'));
+        $role->is_active = request('is_active');
+        $role->modified_by = auth()->id();
         $role->role_clients = (in_array(request('role_clients'), $valid)) ? request('role_clients') : 0;
         $role->role_contacts = (in_array(request('role_contacts'), $valid)) ? request('role_contacts') : 0;
         $role->role_invoices = (in_array(request('role_invoices'), $valid)) ? request('role_invoices') : 0;

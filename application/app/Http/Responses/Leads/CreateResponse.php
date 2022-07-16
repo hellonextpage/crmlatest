@@ -32,7 +32,7 @@ class CreateResponse implements Responsable {
         }
 
         //render the form
-        $html = view('pages/leads/components/modals/add-edit-inc', compact('page', 'categories', 'tags', 'statuses', 'sources', 'fields'))->render();
+        $html = view('pages/leads/components/modals/add-edit-inc', compact('page', 'branch','categories', 'tags', 'statuses', 'sources', 'fields'))->render();
         $jsondata['dom_html'][] = array(
             'selector' => '#commonModalBody',
             'action' => 'replace',

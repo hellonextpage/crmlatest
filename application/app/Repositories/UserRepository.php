@@ -10,6 +10,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Log;
@@ -24,8 +25,9 @@ class UserRepository {
     /**
      * Inject dependecies
      */
-    public function __construct(User $users) {
+    public function __construct(User $users,Branch $branch) {
         $this->users = $users;
+        $this->branch = $branch;
     }
 
     /**
@@ -83,6 +85,9 @@ class UserRepository {
 
         //user object
         $users = $this->users->newQuery();
+
+        
+       
 
         //join: client category
         $users->leftjoinClients();
@@ -262,6 +267,12 @@ class UserRepository {
         $user->phone = request('phone');
         $user->position = request('position');
         $user->role_id = request('role_id');
+        $user->address = request('address');
+        $user->commission_type_id = 1;
+        $user->modified_by = Auth()->user()->id;
+        $user->branch_id = request('branch_id');
+        $user->city_id = request('city_id');
+        $user->joined_on = date('Y-m-d');
         $user->creatorid = Auth()->user()->id;
 
         //password
@@ -379,6 +390,11 @@ class UserRepository {
         $user->social_linkedin = request('social_linkedin');
         $user->social_github = request('social_github');
         $user->social_dribble = request('social_dribble');
+        $user->address = request('address');
+        $user->commission_type_id = 1;
+        $user->modified_by = Auth()->user()->id;
+        $user->city_id = request('city_id');
+        $user->branch_id = request('branch_id');
 
         //client user
         if (request()->filled('clientid')) {

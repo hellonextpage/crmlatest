@@ -45,6 +45,26 @@
                     value="{{ $lead->lead_phone ?? '' }}">
             </div>
         </div>
+
+        <!--mobile-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.mobile_no')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="mobile_no" name="mobile_no" placeholder=""
+                    value="{{ $lead->mobile_no ?? '' }}">
+            </div>
+        </div>
+
+        <!--telephone-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.area')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="area" name="area" placeholder=""
+                    value="{{ $lead->area ?? '' }}">
+            </div>
+        </div>
         <!--email-->
         <div class="form-group row">
             <label
@@ -55,6 +75,21 @@
             </div>
         </div>
 
+        <!--[edit] branch-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.branch')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <select class="select2-basic form-control form-control-sm" id="branch_id" name="branch_id">
+                    <option></option>
+                    @foreach ($branch as $br)
+                    <option value="{{ $br->branch_id }}" @if(isset($lead->branch_id) && ($lead->branch_id == $br->branch_id)) selected @endif>
+                        {{$br->branch_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <!--/#[edit] branch-->
 
         <!--value-->
         <div class="form-group row">
@@ -64,6 +99,18 @@
             <div class="col-sm-12 col-lg-9">
                 <input type="number" class="form-control form-control-sm" id="lead_value" name="lead_value"
                     placeholder="" value="{{ $lead->lead_value ?? '' }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label
+                class="col-12 col-lg-3 text-left control-label col-form-label required">Is Active</label>
+            <div class="col-12 col-lg-9">
+                <select class="form-control form-control-sm"  id="is_active" name="is_active">
+                    <option value="">Select Status</option>
+                    <option value="1" @if(isset($lead->is_active) && $lead->is_active==1) selected @endif>Active</option>
+                    <option value="0" @if(isset($lead->is_active) && $lead->is_active==0) selected @endif>In Active</option>
+                </select>
+                
             </div>
         </div>
 

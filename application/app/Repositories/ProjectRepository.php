@@ -349,6 +349,27 @@ class ProjectRepository {
         $project->project_date_start = request('project_date_start');
         $project->project_date_due = request('project_date_due');
 
+        $project->branch_id = request('branch_id');
+        $project->city_id = request('city_id');
+        $project->address = request('address');
+
+        $project->area = request('area');
+        $project->pincode = request('pincode');
+        $project->map_location = request('map_location');
+        $project->net_layout_area = request('net_layout_area');
+        $project->plot_area = request('plot_area');
+        $project->site_rsrvd_for_public = request('site_rsrvd_for_public');
+        $project->roads_area = request('roads_area');
+        $project->approval_no = request('approval_no');
+        $project->ref_lr_no = request('ref_lr_no');
+
+        $project->apporval_dt = request('apporval_dt');
+        $project->authority_blongs_to = request('authority_blongs_to');
+        $project->permission_no = request('permission_no');
+        $project->measurements = request('measurements');
+        $project->partnered_banks = request('partnered_banks');
+        $project->modified_by = auth()->id();
+
         if (auth()->user()->role->role_projects_billing == 2) {
             $project->project_billing_type = (in_array(request('project_billing_type'), ['hourly', 'fixed'])) ? request('project_billing_type') : 'hourly';
             $project->project_billing_rate = (is_numeric(request('project_billing_rate'))) ? request('project_billing_rate') : 0;
@@ -411,6 +432,27 @@ class ProjectRepository {
         $project->clientperm_timesheets_view = (request('clientperm_timesheets_view') == 'on') ? 'yes' : 'no';
         $project->clientperm_expenses_view = (request('clientperm_expenses_view') == 'on') ? 'yes' : 'no';
         $project->assignedperm_tasks_collaborate = (request('assignedperm_tasks_collaborate') == 'on') ? 'yes' : 'no';
+
+        $project->branch_id = request('branch_id');
+        $project->city_id = request('city_id');
+        $project->address = request('address');
+
+        $project->area = request('area');
+        $project->pincode = request('pincode');
+        $project->map_location = request('map_location');
+        $project->net_layout_area = request('net_layout_area');
+        $project->plot_area = request('plot_area');
+        $project->site_rsrvd_for_public = request('site_rsrvd_for_public');
+        $project->roads_area = request('roads_area');
+        $project->approval_no = request('approval_no');
+        $project->ref_lr_no = request('ref_lr_no');
+
+        $project->apporval_dt = request('apporval_dt');
+        $project->authority_blongs_to = request('authority_blongs_to');
+        $project->permission_no = request('permission_no');
+        $project->measurements = request('measurements');
+        $project->partnered_banks = request('partnered_banks');
+        $project->modified_by = auth()->id();
 
         if (auth()->user()->role->role_projects_billing == 2) {
             $project->project_billing_type = (in_array(request('project_billing_type'), ['hourly', 'fixed'])) ? request('project_billing_type') : 'hourly';

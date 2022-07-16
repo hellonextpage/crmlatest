@@ -87,6 +87,7 @@ class Categories extends Controller {
             'page' => $page,
             'categories' => $categories,
         ];
+		
 
         //show the view
         return new IndexResponse($payload);

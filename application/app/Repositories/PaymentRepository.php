@@ -240,6 +240,38 @@ class PaymentRepository {
         $payment->payment_transaction_id = request('payment_transaction_id');
         $payment->payment_gateway = request('payment_gateway');
         $payment->payment_notes = request('payment_notes');
+		$payment->is_active = request('is_active');
+		
+		
+		//unique file id & directory name
+		$file = request('attachment');
+		$uniqueid = Str::random(40);
+		$directory = $uniqueid;
+
+		//original file name
+		$filename = $file->getClientOriginalName();
+
+		//validate if file type if allowed
+		$extension = $file->getClientOriginalExtension();
+		if (is_array(config('settings.disallowed_file_types'))) {
+			if (in_array(".$extension", $excluded)) {
+				abort(409, __('lang.file_type_not_allowed'));
+			}
+		}
+
+		//filepath
+		$file_path = BASE_DIR . "/storage/temp/$directory/$filename";
+
+		//thumb path
+		$thumb_name = generateThumbnailName($filename);
+		$thumb_path = BASE_DIR . "/storage/temp/$directory/$thumb_name";
+
+		//create directory
+		Storage::makeDirectory("temp/$directory");
+
+		//save file to directory
+		Storage::putFileAs("temp/$directory", $file, $filename);
+		$payment->payment_atchmnts = request('filename');
 
         //save and return id
         if ($payment->save()) {

@@ -43,6 +43,44 @@
         </div>
         <!--/#[edit] phone-->
 
+        <!--[edit] address-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.address')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="address" name="address"
+                    value="{{ $user->address ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] address-->
+
+        <!--[edit] branch-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.branch')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <select class="select2-basic form-control form-control-sm" id="branch_id" name="branch_id">
+                    <option></option>
+                    @foreach ($branch as $br)
+                    <option value="{{ $br->branch_id }}" @if(isset($user->branch_id) && ($user->branch_id == $br->branch_id)) selected @endif>
+                        {{$br->branch_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <!--/#[edit] branch-->
+
+        <!--[edit] city-->
+        <div class="form-group row">
+            <label
+                class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.city')) }}</label>
+            <div class="col-sm-12 col-lg-9">
+                <input type="text" class="form-control form-control-sm" id="city_id" name="city_id"
+                    value="{{ $user->city_id ?? '' }}">
+            </div>
+        </div>
+        <!--/#[edit] city-->
+
         <!--position-->
         <div class="form-group row">
             <label

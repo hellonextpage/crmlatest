@@ -59,6 +59,53 @@ Route::group(['prefix' => 'team'], function () {
 });
 Route::resource('team', 'Team');
 
+// Inventory
+Route::group(['prefix' => 'inventory'], function () {
+    Route::any("/", "InventoryController@index");
+});
+Route::resource('inventory', 'InventoryController');
+
+// Appointments
+Route::group(['prefix' => 'appointment'], function () {
+    Route::any("/", "AppointmentsController@index");
+    Route::get("/history/{id}", "AppointmentsController@appointmentHistory");
+});
+Route::resource('appointment', 'AppointmentsController');
+
+// Appointments
+Route::group(['prefix' => 'sales'], function () {
+    Route::any("/", "Sales@index");
+});
+Route::resource('sales', 'Sales');
+
+Route::group(['prefix' => 'salespayment'], function () {
+    Route::any("/", "SalesPaymentSchedule@index");
+});
+Route::resource('salespayment', 'SalesPaymentSchedule');
+
+Route::group(['prefix' => 'commissiontype'], function () {
+    Route::any("/", "CommissionManagement@index");
+});
+Route::resource('commissiontype', 'CommissionManagement');
+
+
+Route::group(['prefix' => 'usercommission'], function () {
+    Route::any("/", "UserCommission@index");
+});
+Route::resource('usercommission', 'UserCommission');
+
+
+Route::group(['prefix' => 'appointmenttype'], function () {
+    Route::any("/", "AppointmentType@index");
+});
+Route::resource('appointmenttype', 'AppointmentType');
+
+
+Route::group(['prefix' => 'appointmentmode'], function () {
+    Route::any("/", "AppointmentModeController@index");
+});
+Route::resource('appointmentmode', 'AppointmentModeController');
+
 //SETTINGS - USER
 Route::group(['prefix' => 'user'], function () {
     Route::get("/avatar", "User@avatar");

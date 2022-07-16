@@ -80,6 +80,11 @@
                                 class="{{ $page['submenu_projects'] ?? '' }}">{{ cleanLang(__('lang.projects')) }}</a>
                         </li>
                         @endif
+                        <li class="sidenav-submenu {{ $page['submenu_inventory'] ?? '' }}"
+                            id="submenu_project_inventory">
+                            <a href="{{ _url('/inventory') }}"
+                                class="{{ $page['submenu_inventory'] ?? '' }}">{{ cleanLang(__('lang.inventory')) }}</a>
+                        </li>
                         <li class="sidenav-submenu {{ $page['submenu_templates'] ?? '' }}"
                             id="submenu_project_templates">
                             <a href="{{ _url('/templates/projects') }}"

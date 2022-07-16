@@ -66,6 +66,24 @@
                     id="payment_transaction_id" autocomplete="off" placeholder="">
             </div>
         </div>
+		<div class="form-group row">
+				<label
+					class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.attachment')) }}</label>
+				<div class="col-sm-12 col-lg-9">
+					<input type="file" name="attachment" class="form-control form-control-sm"/>
+				</div>
+		</div>
+		<div class="form-group row">
+			<label
+				class="col-sm-12 col-lg-3 text-left control-label col-form-label">{{ cleanLang(__('lang.is_active')) }}</label>
+			<div class="col-sm-12 col-lg-9">
+				<select class="form-control form-control-sm"  id="is_active" name="is_active">
+					<option value="">Select Status</option>
+					<option value="1" >Active</option>
+					<option value="0" >Inactive</option>
+				</select>
+			</div>
+		</div>
 
         <!--additional information toggle-->
         <div class="spacer row">

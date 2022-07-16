@@ -65,6 +65,8 @@ class ProjectAssignedRepository {
             $assigned = new $this->assigned;
             $assigned->projectsassigned_projectid = $project_id;
             $assigned->projectsassigned_userid = $user_id;
+            $assigned->created_by = Auth()->user()->id;
+            $assigned->modified_by = Auth()->user()->id;
             $assigned->save();
             $list[] = $user_id;
             //return array of users
@@ -77,6 +79,8 @@ class ProjectAssignedRepository {
                 $assigned = new $this->assigned;
                 $assigned->projectsassigned_projectid = $project_id;
                 $assigned->projectsassigned_userid = $user;
+                $assigned->created_by = Auth()->user()->id;
+                $assigned->modified_by = Auth()->user()->id;
                 $assigned->save();
                 $list[] = $user;
             }

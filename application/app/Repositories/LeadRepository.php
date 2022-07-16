@@ -10,6 +10,7 @@
 namespace App\Repositories;
 
 use App\Models\Lead;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
@@ -26,8 +27,9 @@ class LeadRepository {
     /**
      * Inject dependecies
      */
-    public function __construct(Lead $leads) {
+    public function __construct(Lead $leads,Client $clients) {
         $this->leads = $leads;
+		$this->clients = $clients;
     }
 
     /**
@@ -288,11 +290,40 @@ class LeadRepository {
         $lead->lead_status = request('lead_status');
         $lead->lead_position = $position;
         $lead->lead_categoryid = request('lead_categoryid');
+        $lead->branch_id = request('branch_id');
+        $lead->mobile_no = request('mobile_no');
+        $lead->area = request('area');
+        $lead->is_active = request('is_active');
+		
+		
 
         //save and return id
         if ($lead->save()) {
             //apply custom fields data
             $this->applyCustomFields($lead->lead_id);
+			if(request('lead_status')==2){
+				$client = new $this->clients;
+				$client->branch_id = request('branch_id');
+				$client->person_name = request('lead_firstname');
+				$client->lead_id = $lead->lead_id;
+				$client->lead_source_id = request('lead_categoryid');
+				$client->comments = '';
+				$client->is_active = 1;
+				$client->created_on = date('Y-m-d');
+				$client->created_by = auth()->id();
+				$client->modified_on = date('Y-m-d');
+				$client->modified_by = auth()->id();
+				$client->client_website = request('lead_website');			
+				$client->client_phone = request('lead_phone');
+				$client->mobile_no = request('mobile_no');
+				$client->client_shipping_street = request('lead_street');
+				$client->client_shipping_city = request('lead_city');
+				$client->client_shipping_state = request('lead_state');
+				$client->client_shipping_zip = request('lead_zip');
+				$client->client_shipping_country = request('lead_country');				
+				$client->client_categoryid = (request()->filled('client_categoryid')) ? request('client_categoryid') : 2; //default
+				$client->save();
+			}
             return $lead->lead_id;
         } else {
             return false;
@@ -334,11 +365,38 @@ class LeadRepository {
         $lead->lead_value = request('lead_value');
         $lead->lead_last_contacted = request('lead_last_contacted');
         $lead->lead_status = request('lead_status');
+        $lead->branch_id = request('branch_id');
+        $lead->mobile_no = request('mobile_no');
+        $lead->area = request('area');
+        $lead->is_active = request('is_active');
 
         //save
         if ($lead->save()) {
             //apply custom fields data
             $this->applyCustomFields($lead->lead_id);
+			if(request('lead_status')==2){
+				$client = new $this->clients;
+				$client->branch_id = request('branch_id');
+				$client->person_name = request('lead_firstname');
+				$client->lead_id = $lead->lead_id;
+				$client->lead_source_id = request('lead_categoryid');
+				$client->comments = '';
+				$client->is_active = 1;
+				$client->created_on = date('Y-m-d');
+				$client->created_by = auth()->id();
+				$client->modified_on = date('Y-m-d');
+				$client->modified_by = auth()->id();
+				$client->client_website = request('lead_website');			
+				$client->client_phone = request('lead_phone');
+				$client->mobile_no = request('mobile_no');
+				$client->client_shipping_street = request('lead_street');
+				$client->client_shipping_city = request('lead_city');
+				$client->client_shipping_state = request('lead_state');
+				$client->client_shipping_zip = request('lead_zip');
+				$client->client_shipping_country = request('lead_country');				
+				$client->client_categoryid = (request()->filled('client_categoryid')) ? request('client_categoryid') : 2; //default
+				$client->save();
+			}
             return $lead->lead_id;
         } else {
             return false;

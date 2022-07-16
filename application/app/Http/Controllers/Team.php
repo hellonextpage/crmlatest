@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Validator;
-
+use App\Models\Branch;
 class Team extends Controller {
 
     /**
@@ -35,11 +35,11 @@ class Team extends Controller {
      */
     protected $userrepo;
 
-    public function __construct(RoleRepository $roles, UserRepository $userrepo) {
+    public function __construct(RoleRepository $roles, UserRepository $userrepo,Branch $branch) {
 
         //parent
         parent::__construct();
-
+        $this->branch = $branch;
         //authenticated
         $this->middleware('auth');
 
@@ -77,11 +77,14 @@ class Team extends Controller {
             'status' => 'active',
         ]);
         $users = $this->userrepo->search();
+        //branch object
+        $branch = $this->branch->newQuery();
 
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('team'),
             'users' => $users,
+            
         ];
 
         //show views
@@ -97,10 +100,13 @@ class Team extends Controller {
         //get all team level roles
         $roles = $this->roles->allTeamRoles();
 
+        $branch = $this->branch->All();
+
         //reponse payload
         $payload = [
             'page' => $this->pageSettings('create'),
             'roles' => $roles,
+            'branch'=>$branch
         ];
 
         //show the form
@@ -195,6 +201,9 @@ class Team extends Controller {
         //get all team level roles
         $roles = $this->roles->allTeamRoles();
 
+        // get all branches
+        $branch = $this->branch->All();
+
         //get the user
         $user = $this->userrepo->get($id);
 
@@ -208,6 +217,7 @@ class Team extends Controller {
             'page' => $this->pageSettings('edit'),
             'roles' => $roles,
             'user' => $user,
+            'branch'=>$branch
         ];
 
         //process reponse
